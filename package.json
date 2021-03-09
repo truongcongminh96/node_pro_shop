@@ -8,12 +8,15 @@
     "start": "node backend/server",
     "server": "nodemon backend/server.js",
     "client": "yarn --cwd frontend start",
-    "dev": "concurrently \"yarn server\" \"yarn client\""
+    "dev": "concurrently \"yarn server\" \"yarn client\"",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d"
   },
   "repository": "https://github.com/truongcongminh96/node_pro_shop.git",
   "author": "minh.truong <minh.truong@s3corp.com.vn>",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
