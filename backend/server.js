@@ -1,8 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import colors from 'colors'
-import {notFound, errorHandler} from "./middleware/errorMiddleware.js";
-import connectDb from './config/db.js';
+import {notFound, errorHandler} from './middleware/errorMiddleware.js'
+import connectDb from './config/db.js'
 import productRouter from './routes/productRoutes.js'
 
 dotenv.config();
