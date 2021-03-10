@@ -16,7 +16,7 @@ const Product = ({product}) => {
                         <strong>{product.name}</strong>
                     </Card.Title>
                 </Link>
-
+                Not Found
                 <Card.Text as='div'>
                     <Rating
                         value={product.rating}
