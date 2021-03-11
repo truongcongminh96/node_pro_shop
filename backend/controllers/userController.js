@@ -6,7 +6,7 @@ const authUser = asyncHandler(async (req, res) => {
     const {email, password} = req.body;
 
     const user = await User.findOne({email});
-    if(user && await (user.matchPassword(password))) {
+    if (user && await (user.matchPassword(password))) {
         await res.json({
             _id: user._id,
             name: user.name,
@@ -20,4 +20,20 @@ const authUser = asyncHandler(async (req, res) => {
     }
 });
 
-export {authUser}
+const getUserProfile = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+        await res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin
+        })
+    } else {
+        res.status(404);
+        throw new Error('User not found');
+    }
+});
+
+export {authUser, getUserProfile}
