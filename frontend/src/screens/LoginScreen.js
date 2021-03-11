@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import {Row, Col, Image, ListGroup, Card, Button, Form} from 'react-bootstrap'
+import {Row, Col, Button, Form} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import FormContainer from "../components/FormContainer";
 import Message from '../components/Message'
@@ -38,7 +38,6 @@ const LoginScreen = ({location, history}) => {
                 <Form.Label>Email Address</Form.Label>
                 <Form.Control type='email' placeholder='Enter email' value={email}
                               onChange={(e) => setEmail(e.target.value)}/>
-
             </Form.Group>
             <Form.Group controlId='password'>
                 <Form.Label>Password</Form.Label>
