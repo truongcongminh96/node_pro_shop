@@ -16,7 +16,7 @@ const authUser = asyncHandler(async (req, res) => {
             name: user.name,
             email: user.email,
             isAdmin: user.isAdmin,
-            token: generateToken(user._id),
+            token: generateToken(user._id)
         })
     } else {
         res.status(401);
@@ -40,7 +40,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const user = await User.create({
         name,
         email,
-        password,
+        password
     });
 
     if (user) {
@@ -49,7 +49,7 @@ const registerUser = asyncHandler(async (req, res) => {
             name: user.name,
             email: user.email,
             isAdmin: user.isAdmin,
-            token: generateToken(user._id),
+            token: generateToken(user._id)
         })
     } else {
         res.status(400);
@@ -68,7 +68,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
-            isAdmin: user.isAdmin,
+            isAdmin: user.isAdmin
         })
     } else {
         res.status(404);
@@ -86,19 +86,18 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         user.name = req.body.name || user.name;
         user.email = req.body.email || user.email;
         if (req.body.password) {
-            user.password = req.body.password
+            user.password = req.body.password;
         }
 
-        const updateUserProfile = await user.save();
+        const updatedUser = await user.save();
 
         await res.json({
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            isAdmin: user.isAdmin,
-            token: generateToken(user._id),
-        });
-
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
+            token: generateToken(updatedUser._id)
+        })
     } else {
         res.status(404);
         throw new Error('User not found')
