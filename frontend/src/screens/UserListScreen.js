@@ -8,15 +8,20 @@ import {Button, Table} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {listUsers} from '../actions/userActions'
 
-const UserListScreen = () => {
+const UserListScreen = ({history}) => {
     const dispatch = useDispatch();
 
     const userList = useSelector(state => state.userList);
     const {loading, error, users} = userList;
 
+    const userLogin = useSelector(state => state.userLogin);
+    const {userInfo} = userLogin;
+
     useEffect(() => {
+        (userInfo && userInfo.isAdmin) ? dispatch(listUsers()) : history.push('/login');
+
         dispatch(listUsers())
-    }, [dispatch]);
+    }, [dispatch, history]);
 
     const deleteHandler = (id) => {
         console.log('deleted');
